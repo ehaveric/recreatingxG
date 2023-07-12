@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Site Title</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600&family=Lato:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Exo 2', sans-serif;
+      background-color: #181915;
+      color: #FDFDFD;
+      line-height: 1.6;
+    }
+    .main-content {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .navbar {
+      margin: 20px 20px 50px 20px;
+      height: 75px;
+      background-color: #FE6601;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10%;
+    }
+
+    .nav-item {
+      display: inline-block;
+      margin: 0 20px;
+      color: #333333;
+      font-weight: 600;
+      font-size: 24px;
+      text-decoration: none;
+    }
+    .content {
+      padding: 0 10%;
+      text-align: center;
+    }
+    h1 {
+      font-family: 'Lato', sans-serif;
+      font-weight: 900;
+      font-size: 55px;
+      margin: 30px 0;
+      text-align: center;
+    }
+    h2 {
+      font-family: 'Lato', sans-serif;
+      font-weight: 400;
+      font-size: 30px;
+      margin: 30px 0;
+      text-align: left;
+    }
+    p {
+      margin: 20px 0;
+    }
+    p {
+      margin: 20px 0;
+    }
+    .narrow-paragraph {
+      max-width: 50%;  
+      margin: 20px auto 0 auto; 
+      font-weight: 400;
+      font-style: italic;
+    }
+    .metadata {
+      color: #bbb;
+      margin-bottom: 30px;
+    }
+    .footer {
+      width: 100%;
+      margin: 0;
+      padding: 20px 0;
+      background-color: #FE6601;
+      color: #333;
+      text-align: center;
+    }
+    .left-aligned {
+      text-align: left;
+    }
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        margin: 0 10px;
+        margin-bottom: 34px;
+    }
+    #metrics {
+      display: flex;
+      justify-content: space-around;  /* Adjusts spacing between metrics */
+      margin-top: auto;
+      width: 800px;  /* Matches the width of the pitch */
+      margin-left: 75px;
+      margin-right: auto;
+    }
+    #metrics p {
+      margin: 0;
+    }
+    #myImage {
+      width: 900px;  /* Set the width to 300 pixels */
+   }
+   #myImage2 {
+      width: 750px; 
+   }
+
+    #pitch {
+      border: solid 10px #060;
+    }
+    #tooltip {
+      position: absolute;
+        background: #fff;
+        padding: 5px;
+        border: 1px solid #000;
+        pointer-events: none;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="main-content">
+    <div class="navbar">
+      <div>
+        <a class="nav-item" href="#interactivepitch">Interactive Pitch</a>
+        <a class="nav-item" href="#model">Model</a>
+        <a class="nav-item" href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="content">
+      <img class="center" src="images\xg for header.png" alt="A relevant image for your site">
+      <h1>Angles and Algorithms: Recreating xG</h1>
+      <p class="metadata">By Edin Haveric</p>
+      <p class="narrow-paragraph">Over the past decade, xG has become the most ubiquitous, and in many ways overused, advanced statistic
+        in football. This page will attempt to take us back to step 1, understanding the basics of the math
+        behind models such as xG, as well as showing interactively how the function itself behaves on a football pitch.</p>
+      <h2>About xG</h2>
+      <p class="left-aligned"> xG or Expected Goals, is derived from the concept of Expected Value in statistics. It is the probability
+        that a chance will be scored, based on a variety of different variables such as distance from goal,
+        angle of shot, phase of play, type of shot (header, foot, penalty) and other possible measures
+        such as defensive positioning and type of pass.</p>
+        <figure style="text-align: center;">
+          <img id="myImage" class="center" src="images\long shot.jpg" alt="A long shot at a tight angle">
+          <figcaption>Shots taken from distance and tight angles will naturally have lower xG values.</figcaption>
+        </figure>
+        <p class="left-aligned"> It's important to understand that because xG uses thousands of instances of shot 
+          data to curate its model, we interpret it with respect to its means of calculation.</p>
+        <p class="left-aligned"> Recall that the Law of Large Numbers tells us that as we take the average of a sample 
+          if infinite iid random variables, this sample mean will approach the true mean (or Expected Value).</p>
+          <img  class="center" src="images\xG_illustrations\ev1.png">
+          <img  class="center" src="images\xG_illustrations\ev2.png">
+        <p class="left-aligned"> Take, for example a shot inside the penalty area with an xG of 0.6. While we would 
+          intuitively expect 60% of the efforts from this exact spot to be goals, there may be instances in the short term 
+          where certain players overachieve or underachieve this value, and the real goal ratio is not equal to this value. 
+          What we are assuming with our xG value, is that over the course of a season, the real ratio will converge to this 
+          0.6 value. Of course certain random variables, or players in the context of this problem, will over and underachieve, 
+          but this is the exact variation that exists in something like a coin toss that converges to its true mean. 
+        </p>
+          <p class="left-aligned">
+          We can even extract information from instances in which small scale performance deviates strongly from the model's expectation. 
+          Is it a fluke season? Is the player a great finisher? Is his team creating high quality chances? These are all important questions 
+          that may not be answered directly with xG, but can lead analysts and statisticians to the right direction.
+        </p>
+        <div id="model">
+            <h2>The Model</h2>
+      <p class="left-aligned"> In this particular model, we are pulling event data from the 2017-2018 season for the top 5 
+        European Leagues (England, Spain, Italy, Germany, France). We're using the distance 
+        from goal, the angle created with the goal, and whether or not the shot was a header to create a model that will give 
+        us a likelihood of a shot being a goal.
+      </p>
+      <p class="left-aligned"> The data comes from a WyScout event data sample set available to the public. It's organized 
+        as a .json with hundreds of events per game (shots, dribbles, fouls, saves, etc).
+      </p>
+      <figure style="text-align: center;">
+        <img id="myImage" class="center" src="images\shot_goal_density_heatmap_nonheaders.png" alt="A long shot at a tight angle">
+        <figcaption>Density maps of shots taken and goals scored in the entire years data for non-headers.</figcaption>
+      </figure>
+      <p class="left-aligned"> Notice how low the goal density is for shots outside of the 16 yars box relative 
+        to the amount of shots that are taken from those distances. If you watch football often, think about the best teams in the world, and 
+        how often they take these sort of chances. Has it increased or decreased in the past 10 years?
+      </p>
+      <figure style="text-align: center;">
+        <img id="myImage2" class="center" src="images\relationship_distance_angle (3).png">
+      </figure>
+      <figure style="text-align: center;">
+        <img id="myImage2" class="center" src="images\relationship_distance_angle (4).png">
+        <figcaption>Density figures for how increases in distance and angle affect the probability of a goal being scored.</figcaption>
+      </figure>
+      <p class="left-aligned"> We can clearly see that there exists some form of an exponential relationship between the 
+        distance variable and the probability of scoring a goal. More precisely, scoring a goal becomes exponentially more 
+        difficult as we move away from the goal.
+      </p>
+      <p class="left-aligned"> For headers, the relationship is a bit more predictable. We see a roughly linear relationship up to a certain 
+        point (about 100 degrees), until we observe a erratic up and down of probabilities. This is likely due to the fact that 
+        chances from this close rarely occur, and there isn't enough data to have these values regress to where they would likely lie 
+        on this hypothetical curve.
+      </p>
+      <p class="left-aligned">For a detailed breakdown on the xG model and how I created it, head over to 
+        <a href="https://github.com/ehaveric/xGModel" target="_blank">my GitHub</a>, where I explain in more detail the process of developing the model, as well as other visualizations that I spared from this page.
+      </p>
+    </div>
+      <h2>Interactive Pitch</h2>
+      <p class="left-aligned"> Since our model reflects real positions on a football pitch, we can map the model 
+        onto a field in order to observe how exactly xG behaves in certain places. Shots that you might normally think 
+        are clear cut chances do not always have such high probabilities of being a goal. 
+      </p>
+      <p class="left-aligned"> Assume we are attacking the goal on the right. Hover your mouse over the pitch to see how the distance,
+          angle, and xG all change relative to where the mouse is located. 
+      </p>
+      <p class="left-aligned">
+          To adjust for shots that are headers, check and uncheck the button above the pitch.
+      </p>
+      <label for="header">Header:</label>
+      <input type="checkbox" id="header" name="header">
+      <div id="interactivepitch">
+        <canvas id="pitch" width="800" height="518">
+        </canvas>
+        <div id="metrics" style="display: flex; justify-content: space-between; margin-top: 20px;">
+          <p id="distance" class="metric"></p>
+          <p id="angle" class="metric"></p>
+          <p id="xG" class="metric"></p>
+        </div>        
+      <span id="debug"></span>
+      <h2>Using xG Effectively</h2>
+      <p class="left-aligned"> More often than not, xG is interpreted in a vaccum. That is, it's considered on a small scale of one 
+        or a few games, when in reality it is most useful as a statistic that is used over the course of a season.
+        It's a metric that can not only provide insights into the ability of certain players to finish their chances,
+        but also detect quality of chance creation based on consistent over or underperformance.
+      </p>
+      <figure style="text-align: center;">
+        <img class="center" src="images\teams expected goals.png" alt="Another relevant image for your site">        
+        <figcaption>Aggregated xG values for English Premier League Teams throughout the entirety of the 2022/23 season.</figcaption>
+      </figure>
+      <p class="left-aligned"> Here, we can take a look at how teams performed throughout the duration of the 2022-23 season vs their respective
+        expected goals. In this context, we can more confidently say that instead of all of, for example, Arsenal's 
+        players overperforming on finishing, it's very likely that the quality of chances that Arsenal creates were 
+        underpredicted by the Premier League's model. This kind of variation is completely normal, after all, there exists 
+        a relative symmetry between the overperforming and underperforming goals scored, which is the type of variation 
+        we would expect in a model that is trying to map something inherently random.
+      </p>
+      <h2>Moving Forward</h2>
+      <p class="left-aligned"> Realistically speaking, there are a plethora of other variables that are incredibly relevant to the
+        goalscoring process that we haven't put in our model, and would likely improve it. Things like pass type
+        (through ball, cross, backpass) or chance type (1 on 1, free kick, penalty) could vastly affect the way
+        in which the model calculates the xG; and that's before taking more elaborate metrics into account such as 
+        defensive positioning and phase of play
+      </p>
+    <div id="contact">
+      <h2>Contact</h2>
+        <p>For more information, feel free to connect with me on the following platforms:</p>
+        <div>
+            <a href="https://www.linkedin.com/in/edin-haveric/" target="_blank">
+                <img src="images\linkedin.webp" alt="LinkedIn" class="social-icon">
+            </a>
+            <a href="mailto:ehaveric99@gmail.com">
+                <img src="images\gmail.png" alt="Email" class="social-icon">
+            </a>
+            <a href="https://github.com/ehaveric/xGModel" target="_blank">
+              <img src="images\github.png" alt="GitHub" class="social-icon">
+            </a>
+          </div>
+        </div>
+  </div>
+  </div>
+  </div>
+  <div class="footer">
+    <a class="nav-item" href="#interactivepitch">Interactive Pitch</a>
+    <a class="nav-item" href="#model">Model</a>
+    <a class="nav-item" href="#contact">Contact</a>
+
+    <p>&copy; 2023 Edin Haveric. All rights reserved.</p>
+  </div>
+  <script>
+    function logistic_regression_model(angleRadians, distance, header) {
+      console.log("Inside logistic_regression_model");
+      console.log("angleRadians: ", angleRadians);
+      console.log("distance: ", distance);
+      console.log("header: ", header);
+      
+      // Model coefficients
+      var coefficients = [1.488, -0.1175, -1.0169];  // Replace with actual coefficients
+      
+      // Model intercept
+      var intercept = -0.8593;  // Replace with actual intercept
+      
+      // Calculate the log-odds of scoring
+      var logOdds = intercept + coefficients[0]*angleRadians + coefficients[1]*distance + coefficients[2]*header;
+      
+      console.log("logOdds: ", logOdds);
+
+      // Convert the log-odds to probability
+      var probability = 1 / (1 + Math.exp(-logOdds));
+      
+      console.log("probability: ", probability);
+
+      return probability;
+    }
+
+    (function () {  
+        var canvas = document.getElementById('pitch');
+        var ctx = canvas.getContext('2d');
+
+       // Set the dimensions of the pitch in meters.
+        var pitchWidthMeters = 105;
+        var pitchHeightMeters = 68;
+
+        // Set the dimensions of the canvas in pixels.
+        var pitchWidthPixels = canvas.width;
+        var pitchHeightPixels = canvas.height;
+
+        function mousePosToPitchCoords(mouseX, mouseY) {
+            // Adjust for border
+            let border = 7; // border size in pixels
+            let adjustedMouseX = mouseX + border;
+            let adjustedMouseY = mouseY + border;
+
+            let x = (adjustedMouseX / (pitchWidthPixels + 2 * border)) * pitchWidthMeters;
+            let y = pitchHeightMeters - (adjustedMouseY / (pitchHeightPixels + 2 * border)) * pitchHeightMeters;
+
+            let yOffset = 1.35;  // adjust this value as needed
+            y += yOffset;
+
+            return {x: x, y: y};
+        }
+
+              // Function to calculate distance to goal from a point on the pitch.
+      function distanceToGoal(x, y) {
+          let goalX = 105;  // The x-coordinate of the goal
+          let goalY = 34;  // The y-coordinate of the goal (center of the goal)
+          return Math.sqrt((goalX - x) ** 2 + (goalY - y) ** 2);
+      }
+
+      // Function to calculate angle between goalposts from a point on the pitch.
+      function angleToGoal(x, y) {
+          // Assuming the goal width is 7.32 meters.
+          let goalWidth = 7.32;
+          let goalY = 34;  // The y-coordinate of the goal
+
+          // The distances to the two goalposts
+          let a = Math.sqrt(((goalY - goalWidth / 2) - y) ** 2 + (105 - x) ** 2);
+          let b = Math.sqrt(((goalY + goalWidth / 2) - y) ** 2 + (105 - x) ** 2);
+
+          // The angle between the goalposts from the point's perspective
+          let cosGamma = (a**2 + b**2 - goalWidth**2) / (2 * a * b);
+          let gamma = Math.acos(cosGamma);
+
+          // Convert to degrees.
+          return gamma * (180 / Math.PI);
+      }
+
+          function check_model() {
+        // Given values
+        var distance = 11;
+        var angleRadians = 0.64;
+        var header = 0;
+
+        // Model coefficients
+        var coefficients = [1.488, -0.1175, -1.0169];
+
+        // Model intercept
+        var intercept = -0.8593;
+
+        // Calculate the log-odds of scoring
+        var logOdds = intercept + coefficients[0]*angleRadians + coefficients[1]*distance + coefficients[2]*header;
+
+        // Convert the log-odds to probability
+        var probability = 1 / (1 + Math.exp(-logOdds));
+        
+        console.log("The calculated xG value is " + probability);
+    }
+
+    check_model();
+
+
+        var pitch = {
+          draw : function () {
+        
+        // Outer lines
+        ctx.beginPath();
+        ctx.rect(0,0, canvas.width, canvas.height);
+        ctx.fillStyle = "#060";
+        ctx.fill();
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "#FFF";
+        ctx.stroke();
+        ctx.closePath();
+        
+        ctx.fillStyle = "#FFF";
+        
+        // Mid line
+        ctx.beginPath();
+        ctx.moveTo(canvas.width / 2, 0);
+        ctx.lineTo(canvas.width / 2, canvas.height);
+        ctx.stroke();
+        ctx.closePath();
+        
+        //Mid circle
+        ctx.beginPath()
+        ctx.arc(canvas.width / 2, canvas.height / 2, 73, 0, 2*Math.PI, false);
+        ctx.stroke();
+        ctx.closePath();
+        //Mid point
+        ctx.beginPath()
+        ctx.arc(canvas.width / 2, canvas.height / 2, 2, 0, 2*Math.PI, false);
+        ctx.fill();
+        ctx.closePath();
+        
+        //Home penalty box
+        ctx.beginPath();
+        ctx.rect(0, (canvas.height - 322) / 2, 132, 322);
+        ctx.stroke();
+        ctx.closePath();
+        //Home goal box
+        ctx.beginPath();
+        ctx.rect(0, (canvas.height - 146) / 2, 44, 146);
+        ctx.stroke();
+        ctx.closePath();
+        //Home goal 
+        ctx.beginPath();
+        ctx.moveTo(1, (canvas.height / 2) - 22);
+        ctx.lineTo(1, (canvas.height / 2) + 22);
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.closePath();
+        ctx.lineWidth = 1;
+
+        //Home penalty point
+        ctx.beginPath()
+        ctx.arc(88, canvas.height / 2, 1, 0, 2*Math.PI, true);
+        ctx.fill();
+        ctx.closePath();
+        //Home half circle
+        ctx.beginPath()
+        ctx.arc(88, canvas.height / 2, 73, 0.29*Math.PI, 1.71*Math.PI, true);
+        ctx.stroke();
+        ctx.closePath();
+        
+        //Away penalty box
+        ctx.beginPath();
+        ctx.rect(canvas.width-132, (canvas.height - 322) / 2, 132, 322);
+        ctx.stroke();
+        ctx.closePath();
+        //Away goal box
+        ctx.beginPath();
+        ctx.rect(canvas.width-44, (canvas.height - 146) / 2, 44, 146);
+        ctx.stroke();
+        ctx.closePath();      
+        //Away goal 
+        ctx.beginPath();
+        ctx.moveTo(canvas.width-1, (canvas.height / 2) - 22);
+        ctx.lineTo(canvas.width-1, (canvas.height / 2) + 22);
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.closePath();
+        ctx.lineWidth = 1;
+        //Away penalty point
+        ctx.beginPath()
+        ctx.arc(canvas.width-88, canvas.height / 2, 1, 0, 2*Math.PI, true);
+        ctx.fill();
+        ctx.closePath();
+        //Away half circle
+        ctx.beginPath()
+        ctx.arc(canvas.width-88, canvas.height / 2, 73, 0.71*Math.PI, 1.29*Math.PI, false);
+        ctx.stroke();
+        ctx.closePath();
+              
+        //Home L corner
+        ctx.beginPath()
+        ctx.arc(0, 0, 8, 0, 0.5*Math.PI, false);
+        ctx.stroke();
+        ctx.closePath();
+        //Home R corner
+        ctx.beginPath()
+        ctx.arc(0, canvas.height, 8, 0, 2*Math.PI, true);
+        ctx.stroke();
+        ctx.closePath();
+        //Away R corner
+        ctx.beginPath()
+        ctx.arc(canvas.width, 0, 8, 0.5*Math.PI, 1*Math.PI, false);
+        ctx.stroke();
+        ctx.closePath();
+        //Away L corner
+        ctx.beginPath()
+        ctx.arc(canvas.width, canvas.height, 8, 1*Math.PI, 1.5*Math.PI, false);
+        ctx.stroke();
+        ctx.closePath();
+      }
+        };
+      
+      canvas.addEventListener("mousemove", function(e) {
+        let rect = canvas.getBoundingClientRect();
+        let mouseX = e.clientX - rect.left; // x position within the element.
+        let mouseY = e.clientY - rect.top;  // y position within the element.
+
+        let coords = mousePosToPitchCoords(mouseX, mouseY);
+        let distance = distanceToGoal(coords.x, coords.y);
+        let angle = angleToGoal(coords.x, coords.y);
+
+        console.log("x: ", coords.x);
+        console.log("y: ", coords.y);
+        console.log("distance: ", distance);
+        console.log("angle: ", angle); 
+
+        let angleradians = angle * (3.141592 / 180)
+
+        var header = document.getElementById("header").checked ? 1 : 0;
+
+        console.log("header: ", header);
+
+        let xG = logistic_regression_model(angleradians, distance, header);
+
+        // Display the xG value somewhere on the page.
+        // Assuming you have an HTML element with id="xG" for this purpose.
+        document.getElementById("xG").innerText = "xG: " + xG.toFixed(2);
+        document.getElementById("distance").innerText = "Distance: " + distance.toFixed(2) + " m";
+        document.getElementById("angle").innerText = "Angle: " + angle.toFixed(2) + " degrees";
+      });
+        function toggleSlider(slider) {
+          slider.value = slider.value == 1 ? 0 : 1;
+        }
+
+      pitch.draw();
+    })();
+  </script>
